@@ -18,7 +18,8 @@ const batang = Gowun_Batang({
 
 export const metadata: Metadata = {
   title: "고요",
-  description: "오늘 내려놓지 못한 것을 적어보세요. 익명의 조용한 공간.",
+  description:
+    "마음속 말을 적으면, 조용한 철학의 문장이 돌아옵니다. 익명의 사색 공간.",
 };
 
 export default function RootLayout({
