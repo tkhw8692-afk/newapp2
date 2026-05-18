@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Gowun_Batang, Noto_Sans_KR } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const sans = Noto_Sans_KR({
@@ -29,7 +30,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className={`${sans.variable} ${batang.variable} h-full`}>
-      <body className="min-h-dvh antialiased">{children}</body>
+      <body className="min-h-dvh antialiased">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
