@@ -17,9 +17,8 @@ const serif = Noto_Serif_KR({
 });
 
 export const metadata: Metadata = {
-  title: "Still — Release",
-  description:
-    "A minimal meditation space. Write your worry anonymously, receive quiet wisdom.",
+  title: "고요",
+  description: "오늘 내려놓지 못한 것을 적어보세요. 익명의 조용한 공간.",
 };
 
 export default function RootLayout({

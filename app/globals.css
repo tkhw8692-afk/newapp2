@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
-  --foreground: #f5f5f5;
-  --muted: #6b6b6b;
+  --background: #020202;
+  --foreground: #e8e8e8;
+  --muted: #5a5a5a;
   --border: rgba(255, 255, 255, 0.08);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
@@ -55,14 +55,15 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 100;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.028;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(48px);
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
@@ -110,11 +111,11 @@ body {
 }
 
 .animate-fade-up {
-  animation: fade-up 1.2s var(--ease-out-expo) forwards;
+  animation: fade-up 2s var(--ease-out-expo) forwards;
 }
 
 .animate-fade-in {
-  animation: fade-in 1.4s var(--ease-out-expo) forwards;
+  animation: fade-in 2.2s var(--ease-out-expo) forwards;
 }
 
 .animate-line-grow {
@@ -178,8 +179,8 @@ body {
 @keyframes meditation-fade-in {
   from {
     opacity: 0;
-    transform: translateY(20px);
-    filter: blur(6px);
+    transform: translateY(12px);
+    filter: blur(4px);
   }
   to {
     opacity: 1;
@@ -188,16 +189,53 @@ body {
   }
 }
 
+@keyframes meditation-breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+}
+
+.meditation-room {
+  background: var(--background);
+}
+
+.meditation-vignette {
+  background: radial-gradient(
+    ellipse 72% 68% at 50% 44%,
+    transparent 0%,
+    rgba(0, 0, 0, 0.35) 55%,
+    rgba(0, 0, 0, 0.92) 100%
+  );
+}
+
+.meditation-breathe {
+  animation: meditation-breathe 12s var(--ease-in-out) infinite;
+}
+
 .meditation-fade-in {
-  animation: meditation-fade-in 1.4s var(--ease-out-expo) forwards;
+  animation: meditation-fade-in 2.4s var(--ease-out-expo) forwards;
 }
 
-.meditation-glow-field:focus {
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.06),
-    0 0 48px rgba(255, 255, 255, 0.04);
+.meditation-field {
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: border-color 1.4s var(--ease-out-expo);
 }
 
-.meditation-response-card {
-  backdrop-filter: blur(12px);
+.meditation-field:focus {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.meditation-field::placeholder {
+  transition: opacity 1.2s ease;
+}
+
+.meditation-action:hover:not(:disabled) span:last-child {
+  transform: translateX(3px);
 }
