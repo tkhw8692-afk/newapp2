@@ -1,10 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --background: #020202;
-  --foreground: #e8e8e8;
-  --muted: #5a5a5a;
-  --border: rgba(255, 255, 255, 0.08);
+  --background: #0a0a0a;
+  --background-deep: #050505;
+  --foreground: #f2f0ec;
+  --muted: #9a9690;
+  --border: rgba(255, 255, 255, 0.12);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 }
@@ -15,7 +16,7 @@
   --color-muted: var(--muted);
   --color-border: var(--border);
   --font-sans: var(--font-sans-kr), "Noto Sans KR", system-ui, sans-serif;
-  --font-family-display: var(--font-serif-kr), "Noto Serif KR", serif;
+  --font-family-display: var(--font-batang), "Gowun Batang", "Iropke Batang", serif;
 }
 
 html {
@@ -30,7 +31,8 @@ body {
 }
 
 .font-display {
-  font-family: var(--font-serif-kr), "Noto Serif KR", serif;
+  font-family: var(--font-batang), "Gowun Batang", "Iropke Batang", serif;
+  font-feature-settings: "kern" 1;
 }
 
 ::selection {
@@ -192,26 +194,39 @@ body {
 @keyframes meditation-breathe {
   0%,
   100% {
-    opacity: 0.55;
+    opacity: 0.65;
     transform: translate(-50%, -50%) scale(1);
   }
   50% {
-    opacity: 0.85;
-    transform: translate(-50%, -50%) scale(1.06);
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.05);
   }
 }
 
 .meditation-room {
-  background: var(--background);
+  background:
+    radial-gradient(ellipse 90% 80% at 50% 38%, #121212 0%, transparent 55%),
+    linear-gradient(180deg, var(--background-deep) 0%, var(--background) 48%, #0c0c0c 100%);
 }
 
 .meditation-vignette {
   background: radial-gradient(
-    ellipse 72% 68% at 50% 44%,
-    transparent 0%,
-    rgba(0, 0, 0, 0.35) 55%,
-    rgba(0, 0, 0, 0.92) 100%
+    ellipse 78% 72% at 50% 40%,
+    rgba(255, 255, 255, 0.04) 0%,
+    transparent 42%,
+    rgba(0, 0, 0, 0.28) 68%,
+    rgba(0, 0, 0, 0.72) 100%
   );
+}
+
+.meditation-title-glow {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 252, 245, 0.14) 0%,
+    rgba(255, 252, 245, 0.05) 42%,
+    transparent 72%
+  );
+  filter: blur(18px);
 }
 
 .meditation-breathe {
@@ -223,19 +238,52 @@ body {
 }
 
 .meditation-field {
-  border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  transition: border-color 1.4s var(--ease-out-expo);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.035);
+  transition:
+    border-color 1s var(--ease-out-expo),
+    background-color 1s var(--ease-out-expo),
+    box-shadow 1s var(--ease-out-expo);
 }
 
 .meditation-field:focus {
-  border-bottom-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.04);
 }
 
 .meditation-field::placeholder {
-  transition: opacity 1.2s ease;
+  color: color-mix(in srgb, var(--muted) 88%, transparent);
+  transition: color 1s ease;
 }
 
-.meditation-action:hover:not(:disabled) span:last-child {
-  transform: translateX(3px);
+.meditation-action {
+  transition:
+    color 1s var(--ease-out-expo),
+    text-shadow 1s var(--ease-out-expo),
+    opacity 0.6s ease;
+}
+
+.meditation-action:hover:not(:disabled) {
+  color: rgba(242, 240, 236, 0.92);
+  text-shadow: 0 0 24px rgba(255, 252, 245, 0.22);
+}
+
+.meditation-action:hover:not(:disabled) .meditation-action-arrow {
+  transform: translateX(4px);
+  opacity: 1;
+}
+
+.meditation-action-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.meditation-action-arrow {
+  display: inline-block;
+  opacity: 0.75;
+  transition:
+    transform 1s var(--ease-out-expo),
+    opacity 1s var(--ease-out-expo);
 }

@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { Noto_Sans_KR, Noto_Serif_KR } from "next/font/google";
+import { Gowun_Batang, Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 
 const sans = Noto_Sans_KR({
   variable: "--font-sans-kr",
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["300", "400"],
   display: "swap",
 });
 
-const serif = Noto_Serif_KR({
-  variable: "--font-serif-kr",
+const batang = Gowun_Batang({
+  variable: "--font-batang",
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600"],
+  weight: ["400", "700"],
   display: "swap",
 });
 
@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={`${sans.variable} ${serif.variable} h-full`}>
+    <html lang="ko" className={`${sans.variable} ${batang.variable} h-full`}>
       <body className="min-h-dvh antialiased">{children}</body>
     </html>
   );
